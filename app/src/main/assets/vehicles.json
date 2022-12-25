@@ -1,0 +1,51 @@
+{
+    "success": true,
+    "message": "",
+    "code": 200,
+    "data": {
+        "vehicle": [
+            {
+                "id": 622,
+                "brand": {
+                    "id": 1025,
+                    "name": "Cadillac",
+                    "logo": "https://kotr.app/uploads/vehicleBrand/1577107945.png"
+                },
+                "model": {
+                    "id": 1213,
+                    "name": "CTS"
+                },
+                "plate_number": "7894",
+                "color": "#f3201b"
+            },
+            {
+                "id": 636,
+                "brand": {
+                    "id": 1015,
+                    "name": "BMW",
+                    "logo": "https://kotr.app/uploads/vehicleBrand/1577107607.png"
+                },
+                "model": {
+                    "id": 1161,
+                    "name": "4 Series"
+                },
+                "plate_number": "1234-A A A",
+                "color": "#f3201b"
+            },
+            {
+                "id": 637,
+                "brand": {
+                    "id": 1019,
+                    "name": "Audi",
+                    "logo": "https://kotr.app/uploads/vehicleBrand/1577107759.png"
+                },
+                "model": {
+                    "id": 1256,
+                    "name": "Q3"
+                },
+                "plate_number": null,
+                "color": "#0000FF"
+            }
+        ]
+    }
+}
