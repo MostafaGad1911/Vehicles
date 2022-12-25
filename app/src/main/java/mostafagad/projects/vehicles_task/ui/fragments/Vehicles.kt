@@ -1,13 +1,13 @@
 package mostafagad.projects.vehicles_task.ui.fragments
 
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
@@ -43,11 +43,13 @@ class Vehicles : Fragment(), VehiclesController {
     ): View {
         vehiclesBinding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_vehicles, container, false)
+        vehiclesBinding.lifecycleOwner = this
         return vehiclesBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        vehiclesBinding.executePendingBindings()
         initVehiclesRV()
         collectsVM()
     }
@@ -71,6 +73,9 @@ class Vehicles : Fragment(), VehiclesController {
     }
 
     override fun getVehicleDetails(vehicle: Vehicle) {
+        val bundle = Bundle()
+        bundle.putSerializable("vehicle" , vehicle)
+        findNavController().navigate(R.id.vehicleDetailsFragment , bundle)
 
     }
 

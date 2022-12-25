@@ -42,8 +42,6 @@ class VehiclesAdapter(private val vehiclesList: ArrayList<Vehicle>, vehiclesCont
 
     override fun onBindViewHolder(holder: VehicleHolder, position: Int) {
         startAnimation(vew = holder.itemView, position = position)
-        val itemWidth: Int = (recyclerView.layoutManager?.width!! - 62) / 2
-        holder.itemView.layoutParams.width = itemWidth - 10
         Log.i("MY_VEHICLES" , vehiclesList[position].toString())
 
         holder.bind(item = vehiclesList[position])

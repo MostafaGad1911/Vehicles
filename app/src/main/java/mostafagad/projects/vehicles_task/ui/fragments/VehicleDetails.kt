@@ -1,14 +1,22 @@
 package mostafagad.projects.vehicles_task.ui.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import mostafagad.projects.vehicles_task.R
+import mostafagad.projects.vehicles_task.data.models.Vehicle
+import mostafagad.projects.vehicles_task.databinding.FragmentVehicleDetailsBinding
 
 
 class VehicleDetails : Fragment() {
+
+    val vehicle:Vehicle by lazy {
+        arguments?.getSerializable("vehicle") as Vehicle
+    }
+    private lateinit var vehicleDetailsBinding: FragmentVehicleDetailsBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,9 +28,21 @@ class VehicleDetails : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_vehicle_details, container, false)
+        vehicleDetailsBinding =
+            DataBindingUtil.inflate(inflater, R.layout.fragment_vehicle_details, container, false)
+        vehicleDetailsBinding.lifecycleOwner = this
+        return vehicleDetailsBinding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        vehicleDetailsBinding.executePendingBindings()
+        bindDetails(vehicle = vehicle)
+
+    }
+    private fun bindDetails(vehicle: Vehicle){
+        vehicleDetailsBinding.vehicle = vehicle
+
+    }
 
 }
