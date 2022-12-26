@@ -17,6 +17,12 @@
         android:name="mostafagad.projects.vehicles_task.ui.fragments.VehicleDetails"
         tools:layout="@layout/fragment_vehicle_details"
         android:label="@string/details"
+        >
+        <argument
+            android:name="vehicle"
+            app:nullable="true"
+            app:argType="mostafagad.projects.vehicles_task.data.models.Vehicle"
         />
+    </fragment>
 
 </navigation>

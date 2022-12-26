@@ -13,8 +13,8 @@ import mostafagad.projects.vehicles_task.databinding.FragmentVehicleDetailsBindi
 
 class VehicleDetails : Fragment() {
 
-    val vehicle:Vehicle by lazy {
-        arguments?.getSerializable("vehicle") as Vehicle
+    val vehicle:Vehicle? by lazy {
+        arguments?.getSerializable("vehicle") as? Vehicle
     }
     private lateinit var vehicleDetailsBinding: FragmentVehicleDetailsBinding
 
@@ -37,7 +37,7 @@ class VehicleDetails : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         vehicleDetailsBinding.executePendingBindings()
-        bindDetails(vehicle = vehicle)
+        vehicle?.let { bindDetails(vehicle = it) }
 
     }
     private fun bindDetails(vehicle: Vehicle){

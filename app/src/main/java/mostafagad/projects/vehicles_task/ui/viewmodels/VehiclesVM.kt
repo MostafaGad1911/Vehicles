@@ -8,11 +8,12 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import mostafagad.projects.vehicles_task.data.models.Vehicle
+import mostafagad.projects.vehicles_task.data.repository.VehicleRepo
 import mostafagad.projects.vehicles_task.usecases.VehiclesUseCases
 import javax.inject.Inject
 
 @HiltViewModel
-class VehiclesVM @Inject constructor(private val vehiclesUseCases: VehiclesUseCases): ViewModel () {
+class VehiclesVM @Inject constructor(private val vehiclesRepo: VehicleRepo): ViewModel () {
 
     private val vehiclesState = MutableStateFlow(ArrayList<Vehicle>())
     var vehiclesValue: StateFlow<ArrayList<Vehicle>> = vehiclesState
@@ -22,6 +23,6 @@ class VehiclesVM @Inject constructor(private val vehiclesUseCases: VehiclesUseCa
     }
 
     private fun loadVehicles() = viewModelScope.launch(Dispatchers.Default) {
-        vehiclesState.emit(vehiclesUseCases.getVehicles())
+        vehiclesState.emit(vehiclesRepo.getVehicles())
     }
 }
